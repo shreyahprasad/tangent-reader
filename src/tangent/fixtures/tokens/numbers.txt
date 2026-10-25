@@ -1,0 +1,15 @@
+Table 3. Made-up results for a made-up study of reading time (n = 412).
+
+Group | Pages | Minutes (mean) | SD | 95% CI | p
+Control | 12 | 18.4 | 4.21 | [17.6, 19.2] | —
+Annotated | 12 | 21.9 | 5.07 | [20.9, 22.9] | 0.003
+Annotated + questions | 12 | 24.6 | 6.33 | [23.4, 25.8] | <0.001
+Control | 30 | 47.2 | 9.85 | [45.3, 49.1] | —
+Annotated | 30 | 52.8 | 11.40 | [50.6, 55.0] | 0.012
+Annotated + questions | 30 | 61.3 | 13.02 | [58.8, 63.8] | <0.001
+
+Retention at 7 days was 41.2% (control), 48.9% (annotated) and 57.3% (annotated + questions), F(2, 409) = 14.87, p < 0.0001, η² = 0.068. After adjusting for prior reading speed (β = −0.214, SE = 0.051), the effect remained (t = 3.92, df = 408).
+
+Version 2.4.1 of the analysis script ran on 2026-03-14T09:41:27Z with seed 20260314; results were identical on 3 of 3 reruns (SHA-256 4f1c9a07e2…b83d). Participants were paid $12.50 per session, £10.40 in the UK arm, and ¥1,980 in the Tokyo arm, for a total of $15,276.80 across 1,184 sessions.
+
+Footnotes: [1] Two outliers (IDs 0047 and 0391) were excluded under rule 4.2(b). [2] Pages were set at 11pt, 1.15 line spacing, 6.5in × 9in. [3] See Appendix C, pp. 88–94, for the 27-item questionnaire.

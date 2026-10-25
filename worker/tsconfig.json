@@ -1,0 +1,18 @@
+{
+  // The Worker's code and tests, with the web platform's types (Request, Response, fetch, streams)
+  // and the two page modules it shares: the failure's shape and the limits.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "WebWorker"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmit": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "types": []
+  },
+  "include": ["./**/*.ts", "../src/import/link.ts", "../src/tangent/style.ts"]
+}

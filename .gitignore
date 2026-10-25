@@ -1,0 +1,12 @@
+node_modules/
+dist/
+e2e-dist/
+*.tsbuildinfo
+.env*
+.DS_Store
+test-results/
+playwright-report/
+.wrangler/
+# Draft articles for a future answer-quality dev set: kept on disk, not in the repo yet.
+evals/cases/articles/*
+!evals/cases/articles/08-made-up-harrow-ice.txt

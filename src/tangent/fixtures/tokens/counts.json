@@ -1,0 +1,65 @@
+{
+  "measured": "2026-10-13",
+  "models": {
+    "claude-sonnet-5-5": {
+      "chinese.txt": {
+        "chars": 589,
+        "tokens": 640
+      },
+      "code.txt": {
+        "chars": 1677,
+        "tokens": 731
+      },
+      "english.txt": {
+        "chars": 2177,
+        "tokens": 644
+      },
+      "japanese.txt": {
+        "chars": 616,
+        "tokens": 631
+      },
+      "korean.txt": {
+        "chars": 612,
+        "tokens": 648
+      },
+      "numbers.txt": {
+        "chars": 1196,
+        "tokens": 637
+      },
+      "russian.txt": {
+        "chars": 1214,
+        "tokens": 489
+      }
+    },
+    "claude-haiku-5-5": {
+      "chinese.txt": {
+        "chars": 589,
+        "tokens": 640
+      },
+      "code.txt": {
+        "chars": 1677,
+        "tokens": 731
+      },
+      "english.txt": {
+        "chars": 2177,
+        "tokens": 644
+      },
+      "japanese.txt": {
+        "chars": 616,
+        "tokens": 631
+      },
+      "korean.txt": {
+        "chars": 612,
+        "tokens": 648
+      },
+      "numbers.txt": {
+        "chars": 1196,
+        "tokens": 637
+      },
+      "russian.txt": {
+        "chars": 1214,
+        "tokens": 489
+      }
+    }
+  }
+}

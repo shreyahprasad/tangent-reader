@@ -1,0 +1,9 @@
+{
+  // The evals, their graders and their config: Node's types for the run (files, the key from the
+  // environment), on top of the page's own settings. Kept apart so the page never sees Node's types.
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["vite/client", "node"]
+  },
+  "include": ["./**/*.ts", "../vitest.eval.config.ts"]
+}

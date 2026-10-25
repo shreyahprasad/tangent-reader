@@ -1,0 +1,92 @@
+/*
+ * Design tokens. Every color, size and duration the page uses lives here; change values here only.
+ */
+:root {
+  /* Palette, each as light-dark(light, dark): light is iOS's grouped palette, dark a soft grey. The
+     page is dark until you pick a theme in Settings (src/app/theme.ts sets data-theme, below).
+     Contrast is light / dark. */
+  --bg: light-dark(#f2f2f7, #1c1f24);
+  --surface: light-dark(#ffffff, #23272d);
+  --line: light-dark(#d1d1d6, #363b43);
+  --fg: light-dark(#1c1c1e, #e8eaee); /* 15.2 / 13.7:1 on bg */
+  --muted: light-dark(#6c6c70, #a5abb6); /* 5.2 / 6.5:1 on --surface (4.7 / 7.2:1 on bg), the floor for secondary text */
+  --accent: light-dark(#2a5db0, #8db4f5); /* 6.4 / 7.1:1 on --surface */
+  --negative: light-dark(#b42318, #f07a72); /* 6.6 / 5.5:1 on --surface; an error or a refusal, always paired with words */
+
+  /* Type */
+  --font-ui: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Type scale: every text size in the app is one of these (as text-label, text-meta, ...) */
+  --type-label: 11.5px; /* uppercase labels and the breadcrumb */
+  --type-meta: 12px; /* mono metadata: dates, counts, tokens and cost */
+  --type-small: 13px; /* secondary lines and form controls */
+  --type-copy: 14px; /* summaries and notes inside a card */
+  --type-body: 15px; /* running text */
+  --type-title: 17px; /* the article's reading text */
+  --type-heading: 21px; /* page and section headings */
+  --type-control: var(--type-small); /* selects and inputs; 16px on a phone, below */
+
+  /* Spacing */
+  --page-margin: 28px;
+  --gap-block: 24px;
+  --gap-panel: 20px;
+  --panel-pad: 22px;
+  --gap-item: 14px;
+  --radius-panel: 10px;
+  --radius-control: 6px; /* selects, inputs, small boxes inside a panel */
+
+  /* Touch */
+  --tap: 44px; /* the smallest a thumb target should be (Apple HIG) */
+  --tap-min: 0px; /* the least height of a button or text button; a full --tap on the phone */
+
+  /* Tangent: the reading surface. Reading text is --type-title (17px) at weight 400: long reading
+     on a phone wants a step above body. Dots and the rail are accent, the one blue in use. */
+  --read-leading: 1.6;
+  /* The sentence tints. Light uses solid pale blues, so they look the same on a card and on the page. */
+  --anchor-tint: light-dark(#d6e0f0, color-mix(in srgb, var(--accent) 18%, transparent)); /* an anchored sentence */
+  --anchor-hover: light-dark(#e5e5ea, color-mix(in srgb, var(--accent) 8%, transparent)); /* a sentence under the pointer */
+  --anchor-lit: light-dark(#bccdea, color-mix(in srgb, var(--accent) 32%, transparent)); /* the sentence of the open thread */
+  --dot-box: 16px; /* the tap target around a dot, inline with the text */
+  --dot-1: 7px; /* a dot by how much was said: 1+, 3+, 6+ messages (style.ts DOT_STEPS) */
+  --dot-2: 8px;
+  --dot-3: 10px;
+  --dot-ring: 14px; /* the ring around a dot that has a tangent below it */
+  --unread-badge: 5px; /* on a dot whose answer you have not read yet */
+  --rail-width: 3px; /* the paragraph marker in the left margin */
+  --rail-mark: 10px; /* one anchor's mark on the rail, before they merge into a bar */
+  --rail-gap: 14px; /* from the rail to the text */
+  --app-header: 48px; /* the app's top bar: the name, the key and Settings */
+  --tangent-panel: 420px; /* the thread beside the article on a laptop */
+  --tangent-panel-full: 720px; /* the same, widened by Full: the article narrows beside it */
+  --sheet-half: 55dvh; /* the thread sheet on the phone, at half height: the article shows above */
+  --lit-margin: 88px; /* how far below the top the lit sentence settles when a thread opens */
+  --map-indent: 20px; /* each step deeper in the map's tree */
+
+  /* The thread sheet on the phone */
+  --sheet-shadow: 0 -12px 32px light-dark(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.35));
+
+  /* Motion */
+  --motion-page: 360ms; /* a short drag on the sheet sliding back */
+  --ease-page: cubic-bezier(0.22, 1, 0.36, 1); /* fast start, long soft landing: one smooth glide */
+
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="system"] {
+  color-scheme: light dark;
+}
+
+/* The phone. */
+@media (max-width: 640px) {
+  :root {
+    --page-margin: 16px;
+    --panel-pad: 18px;
+    --type-control: 16px; /* iOS zooms into any field under 16px when tapped */
+    --tap-min: var(--tap);
+  }
+}

@@ -1,0 +1,39 @@
+// A made-up rate limiter, for counting tokens on code.
+export interface Bucket {
+  tokens: number;
+  updatedAt: number;
+}
+
+export function refill(bucket: Bucket, now: number, perSecond: number, capacity: number): Bucket {
+  const elapsed = Math.max(0, now - bucket.updatedAt) / 1000;
+  const tokens = Math.min(capacity, bucket.tokens + elapsed * perSecond);
+  return { tokens, updatedAt: now };
+}
+
+export function take(bucket: Bucket, now: number, cost = 1, perSecond = 2, capacity = 10): { ok: boolean; bucket: Bucket } {
+  const next = refill(bucket, now, perSecond, capacity);
+  if (next.tokens < cost) return { ok: false, bucket: next };
+  return { ok: true, bucket: { ...next, tokens: next.tokens - cost } };
+}
+
+const buckets = new Map<string, Bucket>();
+
+export async function handle(request: Request): Promise<Response> {
+  const key = request.headers.get("x-client-id") ?? "anonymous";
+  const now = Date.now();
+  const { ok, bucket } = take(buckets.get(key) ?? { tokens: 10, updatedAt: now }, now);
+  buckets.set(key, bucket);
+  if (!ok) {
+    return new Response(JSON.stringify({ error: "slow_down", retryInMs: Math.ceil((1 - bucket.tokens) * 500) }), {
+      status: 429,
+      headers: { "content-type": "application/json", "retry-after": "1" },
+    });
+  }
+  const body = (await request.json().catch(() => null)) as { items?: unknown[] } | null;
+  const count = Array.isArray(body?.items) ? body.items.length : 0;
+  return Response.json({ received: count, remaining: Math.floor(bucket.tokens) });
+}
+
+for (let i = 0; i < 3; i++) {
+  console.log(`[${new Date(1_700_000_000_000 + i * 250).toISOString()}] take #${i}:`, take({ tokens: 1, updatedAt: 0 }, i * 250));
+}

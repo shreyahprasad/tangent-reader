@@ -1,0 +1,26 @@
+# Supply-chain rules (SECURITY.md, Dependencies).
+# Versions change only when deliberately updated.
+
+# Exact versions in package.json, no ^ or ~ ranges.
+saveExact: true
+
+# Refuse versions published less than 3 days ago (minutes). Most hijacked releases
+# are caught and pulled within that window.
+minimumReleaseAge: 4320
+
+# Fail if a package's publish trust level drops versus its earlier releases.
+trustPolicy: no-downgrade
+
+# Only direct dependencies may come from git or tarball URLs.
+blockExoticSubdeps: true
+
+# Dependency install scripts never run unless allow-listed here after review.
+strictDepBuilds: true
+allowBuilds: {}
+
+# Wrong Node version fails instead of warning.
+engineStrict: true
+
+# pdf.js reads text only (docs/design.md, Import); its native canvas package is for drawing in Node.
+ignoredOptionalDependencies:
+  - "@napi-rs/canvas"
