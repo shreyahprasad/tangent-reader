@@ -14,9 +14,9 @@ Ask Claude about any sentence you're reading, then go deeper from any point in t
 
 ## Why
 
-When you ask a chatbot about something you're reading, the answer lands in a chat panel off to
-the side. Ask a follow-up about one line of that answer and the thread drifts. A few follow-ups
-later you've lost the paragraph you started on.
+When you ask Claude or ChatGPT about something you're reading, the answer lands in one long chat.
+Ask a follow-up about one line of that answer and the thread drifts. A few follow-ups later
+you've lost the paragraph you started on.
 
 Tangent Reader keeps every conversation anchored to the exact sentence it came from, so going
 three levels deep never means losing your place. The demo goes from Lovelace's 1843 note on a
