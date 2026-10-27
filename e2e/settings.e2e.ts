@@ -68,3 +68,37 @@ test("export, delete everything, and import the backup to get it all back", asyn
   await page.goto("/#/");
   await expect(page.getByRole("region", { name: "Sessions" })).toContainText("A test article");
 });
+
+test("the top bar links to the source on GitHub, in a new tab, and stays one line on a phone", async ({ page, context }) => {
+  // One line: every item in the bar is no taller than the bar's own buttons, and nothing scrolls sideways.
+  const oneLine = () =>
+    page.evaluate(() => {
+      const items = [...document.querySelector("header")!.children].map((e) => e.getBoundingClientRect().height);
+      return Math.max(...items) <= 44 && document.documentElement.scrollWidth <= innerWidth;
+    });
+  const github = page.getByRole("banner").getByRole("link", { name: "GitHub", exact: true });
+  await page.goto("/");
+  await expect(github).toHaveAttribute("href", "https://github.com/shreyahprasad/tangent-reader");
+  await expect(page.getByRole("link", { name: "Settings: add your key" })).toBeVisible();
+  await expect(github.getByText("GitHub ↗")).toBeHidden(); // the mark alone on a phone
+  expect(await oneLine()).toBe(true);
+
+  await context.route("https://github.com/**", (route) => route.fulfill({ body: "GitHub" }));
+  const [tab] = await Promise.all([context.waitForEvent("page"), github.tap()]);
+  await expect(tab).toHaveURL("https://github.com/shreyahprasad/tangent-reader");
+  await expect(page).toHaveURL(/127\.0\.0\.1/);
+
+  // The narrowest phone: with no key, "Add your key" keeps the room; with one, GitHub is back.
+  await page.setViewportSize({ width: 320, height: 568 });
+  await expect(github).toBeHidden();
+  expect(await oneLine()).toBe(true);
+  await withKey(page);
+  await page.reload();
+  await expect(page.getByRole("link", { name: "Settings", exact: true })).toBeVisible();
+  await expect(github).toBeVisible();
+  expect(await oneLine()).toBe(true);
+
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await expect(github.getByText("GitHub ↗")).toBeVisible();
+  expect(await oneLine()).toBe(true);
+});

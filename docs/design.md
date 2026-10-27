@@ -293,6 +293,8 @@ them to take you back to exactly where you were.
 
 ## Screens
 
+- **Top bar:** the name (home to the library), GitHub (the source, in a new tab; the mark alone on a
+  phone, and under 360px only once a key is saved), and Settings.
 - **Library:** Pick up (where you last were, then the threads you left open: flagged, or with
   answers you have not read), then your sessions, newest first. An empty library offers the demo,
   the key form and the import card. Import opens on Link, with File and Paste beside it.
